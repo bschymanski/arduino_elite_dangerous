@@ -3,7 +3,7 @@ import time
 
 
 # read file
-# please locate the correct Status.json File. This is a testfile
+# please locate the correct Status.json File. This is a testfile -
 with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
     data=myfile.read()
 
