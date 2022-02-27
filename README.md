@@ -15,3 +15,6 @@ If Syntax Error: https://exerror.com/syntaxerror-unicode-error-unicodeescape-cod
 
 Sending Json to serial and receive on arduino
 (https://stackoverflow.com/questions/55698070/sending-json-over-serial-in-python-to-arduino)
+
+print individual bits from a number
+https://www.tutorialspoint.com/read-a-specific-bit-of-a-number-with-arduino
