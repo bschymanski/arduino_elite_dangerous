@@ -20,7 +20,7 @@ Bit manipulation
 https://wiki.python.org/moin/BitManipulation
 
 int to multiple bytes
-https://www.geeksforgeeks.org/how-to-convert-int-to-bytes-in-python/
+https://www.kite.com/python/answers/how-to-convert-an-int-to-bytes-in-python#:~:text=Use%20int.,the%20beginning%20of%20the%20array.
 
 print individual bits from a number
 https://www.tutorialspoint.com/read-a-specific-bit-of-a-number-with-arduino
