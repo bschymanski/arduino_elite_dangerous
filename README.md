@@ -16,5 +16,11 @@ If Syntax Error: https://exerror.com/syntaxerror-unicode-error-unicodeescape-cod
 Sending Json to serial and receive on arduino
 (https://stackoverflow.com/questions/55698070/sending-json-over-serial-in-python-to-arduino)
 
+Bit manipulation
+https://wiki.python.org/moin/BitManipulation
+
+int to multiple bytes
+https://www.geeksforgeeks.org/how-to-convert-int-to-bytes-in-python/
+
 print individual bits from a number
 https://www.tutorialspoint.com/read-a-specific-bit-of-a-number-with-arduino
