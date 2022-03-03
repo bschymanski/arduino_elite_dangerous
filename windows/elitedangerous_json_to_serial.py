@@ -149,15 +149,75 @@ print( "srvHighBeam                     :  %i" % flags3.srvHighBeam           )
 print ("Ready...")
 # read file
 # please locate the correct Status.json File. This is a testfile -
-with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
-    data=myfile.read()
+#with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
+#    data=myfile.read()
 
+finalstring = "\r"
 ser  = serial.Serial("COM9", baudrate= 9600, 
-           timeout=2.5, 
-           parity=serial.PARITY_NONE, 
-           bytesize=serial.EIGHTBITS, 
-           stopbits=serial.STOPBITS_ONE
+        timeout=2.5, 
+        parity=serial.PARITY_NONE, 
+        bytesize=serial.EIGHTBITS, 
+        stopbits=serial.STOPBITS_ONE
         )
+
+while 1:
+    with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
+        data=myfile.read()
+    
+    obj = json.loads(data)
+    an_int = obj['Flags']
+    a_bytes_big = an_int.to_bytes(4, 'little')
+    print(a_bytes_big)
+    print(a_bytes_big[0])
+    print(a_bytes_big[1])
+    print(a_bytes_big[2])
+    print(a_bytes_big[3])
+
+    flags0.asByte = a_bytes_big[0]
+    flags1.asByte = a_bytes_big[1]
+    flags2.asByte = a_bytes_big[2]
+    flags3.asByte = a_bytes_big[3]
+
+    print( "docked                          :  %i" % flags0.docked               )
+    print( "landed                          :  %i" % flags0.landed               )
+    print( "Shields_Up                      :  %i" % flags0.Shields_Up    )
+    print( "Landing_Gear_Down               :  %i" % flags0.Landing_Gear_Down    )
+    print( "Supercruise                     :  %i" % flags0.Supercruise          )
+    #print( "FlightAssist_Off                :  %i" % flags0.FlightAssist_Off     )
+    #print( "Hardpoints_Deployed             :  %i" % flags0.Hardpoints_Deployed  )
+    #print( "In_Wing                         :  %i" % flags0.In_Wing           )
+    #print( "LightsOn                        :  %i" % flags1.LightsOn           )
+    #print( "Cargo_Scoop_Deployed            :  %i" % flags1.Cargo_Scoop_Deployed           )
+    #print( "Silent_Running                  :  %i" % flags1.Silent_Running           )
+    #print( "Fuel_Scooping                   :  %i" % flags1.Fuel_Scooping           )
+    #print( "Srv_Handbrake                   :  %i" % flags1.Srv_Handbrake           )
+    #print( "Srv_using_Turret_view           :  %i" % flags1.Srv_using_Turret_view           )
+    #print( "Srv_Turret_retracted            :  %i" % flags1.Srv_Turret_retracted           )
+    #print( "Srv_DriveAssist                 :  %i" % flags1.Srv_DriveAssist           )
+    #print( "Fsd_MassLocked                  :  %i" % flags2.Fsd_MassLocked           )
+    #print( "Fsd_Charging                    :  %i" % flags2.Fsd_Charging           )
+    #print( "Fsd_Cooldown                    :  %i" % flags2.Fsd_Cooldown           )
+    #print( "Low_Fuel                        :  %i" % flags2.Low_Fuel           )
+    #print( "Over_Heating                    :  %i" % flags2.Over_Heating           )
+    #print( "Has_Lat_Long                    :  %i" % flags2.Has_Lat_Long           )
+    #print( "IsInDanger                      :  %i" % flags2.IsInDanger           )
+    #print( "Being_Interdicted               :  %i" % flags2.Being_Interdicted           )
+    #print( "In_MainShip                     :  %i" % flags3.In_MainShip           )
+    #print( "In_Fighter                      :  %i" % flags3.In_Fighter           )
+    #print( "In_SRV                          :  %i" % flags3.In_SRV           )
+    #print( "Hud_in_Analysis_mode            :  %i" % flags3.Hud_in_Analysis_mode           )
+    #print( "Night_Vision                    :  %i" % flags3.Night_Vision           )
+    #print( "Altitude_from_Average_radius    :  %i" % flags3.Altitude_from_Average_radius           )
+    #print( "fsdJump                         :  %i" % flags3.fsdJump           )
+    #print( "srvHighBeam                     :  %i" % flags3.srvHighBeam           )
+    serial_string = str(flags0.docked)+str(flags0.landed)+str(flags0.Shields_Up)+str(flags0.Landing_Gear_Down)+str(flags0.Supercruise)
+    ser.write(serial_string.encode("utf-8"))
+    ser.write(finalstring.encode("utf-8"))
+    print ("Ready...")
+
+    time.sleep(1)
+
+    
 
 #while 1:
 #    # parse file
