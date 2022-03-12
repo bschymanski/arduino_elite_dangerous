@@ -153,12 +153,12 @@ print ("Ready...")
 #    data=myfile.read()
 
 finalstring = "\r"
-ser  = serial.Serial("COM9", baudrate= 9600, 
-        timeout=2.5, 
-        parity=serial.PARITY_NONE, 
-        bytesize=serial.EIGHTBITS, 
-        stopbits=serial.STOPBITS_ONE
-        )
+#ser  = serial.Serial("COM9", baudrate= 9600, 
+#        timeout=2.5, 
+#        parity=serial.PARITY_NONE, 
+#        bytesize=serial.EIGHTBITS, 
+#        stopbits=serial.STOPBITS_ONE
+#        )
 
 while 1:
     with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
@@ -177,16 +177,25 @@ while 1:
     flags1.asByte = a_bytes_big[1]
     flags2.asByte = a_bytes_big[2]
     flags3.asByte = a_bytes_big[3]
+    
+    Pips_obj = obj['Pips']
 
     print( "docked                          :  %i" % flags0.docked               )
     print( "landed                          :  %i" % flags0.landed               )
     print( "Shields_Up                      :  %i" % flags0.Shields_Up    )
     print( "Landing_Gear_Down               :  %i" % flags0.Landing_Gear_Down    )
     print( "Supercruise                     :  %i" % flags0.Supercruise          )
+    print( "fuelMain                        :  %i" % int(obj['Fuel']['FuelMain']))
+    print( "fuelReserve                     :  %i" % int(obj['Fuel']['FuelReservoir']*1000))
+    print( "Cargo                           :  %i" % int(obj['Cargo']))
+    print( "LegalState                      :  " + obj['LegalState'])
+    print( "Pips System                     :  %i" %int(Pips_obj[0]))
+    print( "Pips Engine                     :  %i" %int(Pips_obj[1]))
+    print( "Pips Weapons                    :  %i" %int(Pips_obj[2]))
     #print( "FlightAssist_Off                :  %i" % flags0.FlightAssist_Off     )
     #print( "Hardpoints_Deployed             :  %i" % flags0.Hardpoints_Deployed  )
     #print( "In_Wing                         :  %i" % flags0.In_Wing           )
-    #print( "LightsOn                        :  %i" % flags1.LightsOn           )
+    print( "LightsOn                        :  %i" % flags1.LightsOn           )
     #print( "Cargo_Scoop_Deployed            :  %i" % flags1.Cargo_Scoop_Deployed           )
     #print( "Silent_Running                  :  %i" % flags1.Silent_Running           )
     #print( "Fuel_Scooping                   :  %i" % flags1.Fuel_Scooping           )
@@ -210,9 +219,10 @@ while 1:
     #print( "Altitude_from_Average_radius    :  %i" % flags3.Altitude_from_Average_radius           )
     #print( "fsdJump                         :  %i" % flags3.fsdJump           )
     #print( "srvHighBeam                     :  %i" % flags3.srvHighBeam           )
-    serial_string = str(flags0.docked)+str(flags0.landed)+str(flags0.Shields_Up)+str(flags0.Landing_Gear_Down)+str(flags0.Supercruise)
-    ser.write(serial_string.encode("utf-8"))
-    ser.write(finalstring.encode("utf-8"))
+    serial_string = str(flags0.docked)+str(flags0.landed)+str(flags0.Shields_Up)+str(flags0.Landing_Gear_Down)+str(flags0.Supercruise)+"ps"+str(obj['Pips'][0])+"pe"+str(obj['Pips'][1])+"pw"+str(obj['Pips'][2])
+    
+    #ser.write(serial_string.encode("utf-8"))
+    #ser.write(finalstring.encode("utf-8"))
     print ("Ready...")
 
     time.sleep(1)
