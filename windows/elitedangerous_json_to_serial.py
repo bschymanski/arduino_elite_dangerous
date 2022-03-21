@@ -152,13 +152,14 @@ print ("Ready...")
 #with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
 #    data=myfile.read()
 
-finalstring = "\r"
-#ser  = serial.Serial("COM9", baudrate= 9600, 
-#        timeout=2.5, 
-#        parity=serial.PARITY_NONE, 
-#        bytesize=serial.EIGHTBITS, 
-#        stopbits=serial.STOPBITS_ONE
-#        )
+#finalstring = "\r"
+finalstring = "\n"
+ser  = serial.Serial("COM21", baudrate= 9600, 
+        timeout=2.5, 
+        parity=serial.PARITY_NONE, 
+        bytesize=serial.EIGHTBITS, 
+        stopbits=serial.STOPBITS_ONE
+        )
 
 while 1:
     with open(r'C:\Users\Anwender\Saved Games\Frontier Developments\Elite Dangerous\Status_test.json', 'r') as myfile:
@@ -219,10 +220,10 @@ while 1:
     #print( "Altitude_from_Average_radius    :  %i" % flags3.Altitude_from_Average_radius           )
     #print( "fsdJump                         :  %i" % flags3.fsdJump           )
     #print( "srvHighBeam                     :  %i" % flags3.srvHighBeam           )
-    serial_string = str(flags0.docked)+str(flags0.landed)+str(flags0.Shields_Up)+str(flags0.Landing_Gear_Down)+str(flags0.Supercruise)+"ps"+str(obj['Pips'][0])+"pe"+str(obj['Pips'][1])+"pw"+str(obj['Pips'][2])
-    
-    #ser.write(serial_string.encode("utf-8"))
-    #ser.write(finalstring.encode("utf-8"))
+    serial_string = str(flags0.docked)+str(flags0.landed)+str(flags0.Landing_Gear_Down)+str(flags0.Shields_Up)+str(flags0.Supercruise)+str(flags0.FlightAssist_Off)+str(flags0.Hardpoints_Deployed)+str(flags0.In_Wing)+str(flags1.LightsOn)+str(flags1.Cargo_Scoop_Deployed)+str(flags1.Silent_Running)+str(flags1.Fuel_Scooping)+str(flags1.Srv_Handbrake)+str(flags1.Srv_using_Turret_view)+str(flags1.Srv_Turret_retracted)+str(flags1.Srv_DriveAssist)+str(flags2.Fsd_MassLocked)+str(flags2.Fsd_Charging)+str(flags2.Fsd_Cooldown)+str(flags2.Low_Fuel)+str(flags2.Over_Heating)+str(flags2.Has_Lat_Long)+str(flags2.IsInDanger)+str(flags2.Being_Interdicted)+str(flags3.In_MainShip)+str(flags3.In_Fighter)+str(flags3.In_SRV)+str(flags3.Hud_in_Analysis_mode)+str(flags3.Night_Vision)+str(flags3.Altitude_from_Average_radius)+str(flags3.fsdJump)+str(flags3.srvHighBeam)+"_ps_"+str(obj['Pips'][0])+"_pe_"+str(obj['Pips'][1])+"_pw_"+str(obj['Pips'][2])+"_legal_"+str(obj['LegalState'])+"_Fuel_"+str(obj['Fuel']['FuelMain'])+"_Fuelres_"+str(obj['Fuel']['FuelReservoir']*1000)+"_cargo_"+str(obj['Cargo'])
+    print(serial_string)
+    ser.write(serial_string.encode("utf-8"))
+    ser.write(finalstring.encode("utf-8"))
     print ("Ready...")
 
     time.sleep(1)

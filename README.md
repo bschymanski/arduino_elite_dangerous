@@ -24,3 +24,28 @@ https://www.kite.com/python/answers/how-to-convert-an-int-to-bytes-in-python#:~:
 
 print individual bits from a number
 https://www.tutorialspoint.com/read-a-specific-bit-of-a-number-with-arduino
+
+
+Circuitpython:
+Uart
+https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/pinouts
+import board
+import busio
+
+uart = busio.UART(tx=board.GP4, rx=board.GP5)
+
+Read string:
+https://learn.adafruit.com/circuitpython-essentials/circuitpython-uart-serial
+while True:
+    data = uart.read(32)  # read up to 32 bytes
+    # print(data)  # this is a bytearray type
+
+    if data is not None:
+        led.value = True
+
+        # convert bytearray to string
+        data_string = ''.join([chr(b) for b in data])
+        print(data_string, end="")
+
+        led.value = False
+        
