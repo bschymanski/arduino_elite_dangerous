@@ -48,4 +48,6 @@ while True:
         print(data_string, end="")
 
         led.value = False
-        
+
+Circuit Python Tipps
+https://github.com/todbot/circuitpython-tricks#read-an-digital-input-as-a-button
